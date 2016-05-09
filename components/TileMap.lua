@@ -21,12 +21,12 @@ function TileMap:initialize(mapFile)
   end
 
   local tileSetImageWidth, tileSetImageHeight = self.tileSetImage:getWidth(), self.tileSetImage:getHeight()
-  local tileSpritesPerRow = math.floor(tileSetImageWidth / self.tileSize)
+  local tilesPerRow = math.floor(tileSetImageWidth / self.tileSize)
 
   for _, info in ipairs(map.tileInfo) do
-    local c, tileSpriteIndex = info[1], info[2]
-    local tileRow = math.floor(tileSpriteIndex / tileSpritesPerRow)
-    local tileColumn = tileSpriteIndex % tileSpritesPerRow
+    local c, tileIndex = info[1], info[2]
+    local tileRow = math.floor(tileIndex / tilesPerRow)
+    local tileColumn = tileIndex % tilesPerRow
     local x, y = tileColumn * self.tileSize, tileRow * self.tileSize
     self.tileInfo[c] = {
       quad = love.graphics.newQuad(x, y, self.tileSize, self.tileSize, tileSetImageWidth, tileSetImageHeight),
